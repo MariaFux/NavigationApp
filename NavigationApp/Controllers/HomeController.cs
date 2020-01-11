@@ -58,6 +58,21 @@ namespace NavigationApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Player player = db.Players.Find(id);
+            if (player != null)
+            {
+                db.Players.Remove(player);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
 
         public ActionResult About()
         {
