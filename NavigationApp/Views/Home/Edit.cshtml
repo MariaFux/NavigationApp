@@ -1,0 +1,41 @@
+﻿@model NavigationApp.Models.Player
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit player</h2>
+
+@using (Html.BeginForm())
+{
+    <h4>Soccer player</h4>
+    @Html.HiddenFor(m => m.Id);
+    <p>
+        Player name<br />
+        @Html.EditorFor(m => m.Name)
+    </p>
+
+    <p>
+        Age<br />
+        @Html.EditorFor(m => m.Age)
+    </p>
+
+    <p>
+        Field position<br />
+        @Html.EditorFor(m => m.Position)
+    </p>
+
+    <p>
+        Team<br />
+        @Html.DropDownListFor(m => m.TeamId, ViewBag.Teams as SelectList)
+    </p>
+
+    <p>
+        <input type="submit" value="Send" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("To the list of players", "Index")
+</div>
+
