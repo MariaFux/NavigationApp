@@ -18,6 +18,22 @@ namespace NavigationApp.Controllers
             return View(players.ToList());
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            SelectList teams = new SelectList(db.Teams, "Id", "Name");
+            ViewBag.Teams = teams;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Player player)
+        {
+            db.Players.Add(player);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
